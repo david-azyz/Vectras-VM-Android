@@ -90,6 +90,9 @@ public class VMCreatorActivity extends AppCompatActivity {
     public static DataMainRoms current = new DataMainRoms();
     private String thumbnailPath = "";
     private String vmID = VMManager.idGenerator();
+    // The VM folder this screen created itself; files added here (a new disk, for example) do not
+    // make it "in use", otherwise the VM would get a new ID and lose those files.
+    private String ownedVmID = vmID;
 
     private CreatorUtils utils;
 
@@ -641,8 +644,9 @@ public class VMCreatorActivity extends AppCompatActivity {
     }
 
     private void checkVMID() {
-        if (vmID.isEmpty() || (!modify && VmFileManager.isInUse(vmID))) {
+        if (vmID.isEmpty() || (!modify && !vmID.equals(ownedVmID) && VmFileManager.isInUse(vmID))) {
             vmID = VMManager.idGenerator();
+            ownedVmID = vmID;
             Log.d(TAG, "Changed to ID:" + vmID);
         }
     }
