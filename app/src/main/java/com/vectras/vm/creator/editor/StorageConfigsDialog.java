@@ -674,6 +674,18 @@ public class StorageConfigsDialog extends BottomSheetDialogFragment {
                     utils.dissmissProgressDialog();
                     utils.makeTempDirectory();
 
+                    // Vectras PRO: a folder that already holds a bootable .iso (for example a Windows
+                    // installer) must not be packed into a new, non-bootable disc; use that .iso.
+                    if (filePathData.isValid) {
+                        File[] isoFiles = new File(filePathData.path).listFiles((d, n) -> n.toLowerCase().endsWith(".iso"));
+                        if (isoFiles != null && isoFiles.length > 0) {
+                            java.util.Arrays.sort(isoFiles, (a, b) -> Long.compare(b.length(), a.length()));
+                            setDrive(PENDING_SELECT_FILE_MODE, isoFiles[0].getAbsolutePath());
+                            android.widget.Toast.makeText(requireActivity(), isoFiles[0].getName(), android.widget.Toast.LENGTH_LONG).show();
+                            return;
+                        }
+                    }
+
                     if (filePathData.isValid) {
                         String oldPath = PENDING_SELECT_FILE_MODE == SELECT_CDROM_0_FILE_MODE ? Objects.requireNonNull(binding.cdrom.getText()).toString() : Objects.requireNonNull(binding.tieCdrom1.getText()).toString();
                         if (!oldPath.isEmpty()) utils.markDelete(oldPath);
