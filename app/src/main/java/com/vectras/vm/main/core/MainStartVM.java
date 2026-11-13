@@ -108,6 +108,7 @@ public class MainStartVM {
             }
 
             String env = StartVM.env(activity, vmConfig);
+            if (com.vectras.vm.serial.ComSettings.isEnabled(activity)) com.vectras.vm.serial.ComBridge.get(activity).start();
             activity.runOnUiThread(() -> startNow(activity, vmConfig.itemName, env, vmConfig.vmID, vmConfig.itemIcon, dialog));
         }).start();
     }

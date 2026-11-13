@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/pro_com_category" app:iconSpaceReserved="false">
+        <SwitchPreferenceCompat
+            android:key="proComEnabled"
+            android:defaultValue="false"
+            android:title="@string/pro_com_enabled"
+            android:summary="@string/pro_com_enabled_summary"
+            app:iconSpaceReserved="false" />
+        <ListPreference
+            android:key="proComBaud"
+            android:defaultValue="9600"
+            android:title="@string/pro_com_baud"
+            android:entries="@array/pro_baud_rates"
+            android:entryValues="@array/pro_baud_rates"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
+        <ListPreference
+            android:key="proComDataBits"
+            android:defaultValue="8"
+            android:title="@string/pro_com_data_bits"
+            android:entries="@array/pro_data_bits"
+            android:entryValues="@array/pro_data_bits"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
+        <ListPreference
+            android:key="proComParity"
+            android:defaultValue="none"
+            android:title="@string/pro_com_parity"
+            android:entries="@array/pro_parity_names"
+            android:entryValues="@array/pro_parity_values"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
+        <ListPreference
+            android:key="proComStopBits"
+            android:defaultValue="1"
+            android:title="@string/pro_com_stop_bits"
+            android:entries="@array/pro_stop_bits"
+            android:entryValues="@array/pro_stop_bits"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
+        <Preference
+            android:key="proComStatus"
+            android:title="@string/pro_com_status"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/pro_performance_category" app:iconSpaceReserved="false">
+        <SwitchPreferenceCompat
+            android:key="proFastDisk"
+            android:defaultValue="false"
+            android:title="@string/pro_fast_disk"
+            android:summary="@string/pro_fast_disk_summary"
+            app:iconSpaceReserved="false" />
+    </PreferenceCategory>
+</PreferenceScreen>

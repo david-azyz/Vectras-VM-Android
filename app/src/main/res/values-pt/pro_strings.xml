@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pro_summary">Portas COM (cabo USB serial) e desempenho</string>
+    <string name="pro_com_category">Porta COM (adaptador USB serial)</string>
+    <string name="pro_com_enabled">Ligar a COM1 ao adaptador USB</string>
+    <string name="pro_com_enabled_summary">A máquina virtual ganha uma porta COM1 ligada ao cabo USB serial. Vale a partir da próxima vez que a VM for iniciada.</string>
+    <string name="pro_com_baud">Velocidade (baud rate)</string>
+    <string name="pro_com_data_bits">Bits de dados</string>
+    <string name="pro_com_parity">Paridade</string>
+    <string name="pro_com_stop_bits">Bits de parada</string>
+    <string name="pro_com_status">Situação</string>
+    <string name="pro_performance_category">Desempenho</string>
+    <string name="pro_fast_disk">Disco rápido</string>
+    <string name="pro_fast_disk_summary">Gravação no disco muito mais rápida (o Windows instala e roda mais rápido). Se o app for fechado de repente com a VM ligada, o disco virtual pode estragar.</string>
+    <string name="pro_windows_preset">Otimizar para Windows</string>
+    <string name="pro_windows_preset_title">Qual Windows você vai instalar?</string>
+    <string name="pro_windows_preset_x86_only">Escolha primeiro a arquitetura x86_64.</string>
+    <string name="pro_windows_preset_done">Configuração otimizada para %1$s</string>
+    <string-array name="pro_parity_names">
+        <item>Nenhuma</item><item>Ímpar</item><item>Par</item><item>Marca</item><item>Espaço</item>
+    </string-array>
+</resources>

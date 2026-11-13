@@ -11,4 +11,9 @@
         android:icon="@drawable/folder_open_24px"
         android:title="@string/show_in_folder"
         app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/pro_windows_preset"
+        android:title="@string/pro_windows_preset"
+        app:showAsAction="never"/>
 </menu>

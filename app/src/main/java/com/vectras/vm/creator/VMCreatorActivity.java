@@ -111,6 +111,9 @@ public class VMCreatorActivity extends AppCompatActivity {
                 IntentUtils.showErrorDialog(this);
             }
             return true;
+        } else if (id == R.id.pro_windows_preset) {
+            showWindowsPreset();
+            return true;
         } else if (id == R.id.show_in_folder) {
             if (MainSettingsManager.getBuiltInFilePicker(this)) {
                 FilePickerDialog filePickerDialog = new FilePickerDialog();
@@ -539,6 +542,64 @@ public class VMCreatorActivity extends AppCompatActivity {
             if (current.fdb != null && !current.fdb.isEmpty())
                 current.fdb = (current.fdb.contains("/") ? current.fdb : VmFileManager.getPath(vmID, current.fdb));
         }
+    }
+
+    /** Vectras PRO: fills the VM settings that work best for each Windows version. */
+    private void showWindowsPreset() {
+        String arch = MainSettingsManager.getArch(this);
+        if (!arch.equals(MainSettingsManager.X86_64_ARCH) && !arch.equals(MainSettingsManager.I386_ARCH)) {
+            android.widget.Toast.makeText(this, R.string.pro_windows_preset_x86_only, android.widget.Toast.LENGTH_LONG).show();
+            return;
+        }
+        String[] versions = getResources().getStringArray(R.array.pro_windows_versions);
+        new com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.pro_windows_preset_title)
+            .setItems(versions, (d, which) -> {
+                android.app.ActivityManager am = (android.app.ActivityManager)getSystemService(ACTIVITY_SERVICE);
+                android.app.ActivityManager.MemoryInfo mi = new android.app.ActivityManager.MemoryInfo();
+                am.getMemoryInfo(mi);
+                int totalMb = (int)(mi.totalMem / 1048576L);
+                int hostCores = Math.max(1, new CpuHelper().getCpuCores());
+                int wantedRam;
+                int wantedCores;
+                switch (which) {
+                    case 0: // Windows XP: old hardware it has drivers for
+                        current.machine = 1;      // i440FX
+                        current.cpu = 0;          // default
+                        current.networkCard = 15; // Realtek RTL8139
+                        current.soundCard = 4;    // AC97
+                        wantedRam = 512;
+                        wantedCores = 1;
+                        break;
+                    case 1: // Windows 7
+                        current.machine = 1;      // i440FX
+                        current.cpu = 0;
+                        current.networkCard = 3;  // Intel E1000
+                        current.soundCard = 2;    // Intel HD Audio
+                        wantedRam = 1536;
+                        wantedCores = 2;
+                        break;
+                    default: // Windows 10 / 11: needs a modern CPU model
+                        current.machine = 2;      // Q35
+                        current.cpu = 4;          // max
+                        current.networkCard = 1;  // Intel E1000e
+                        current.soundCard = 2;
+                        wantedRam = 3072;
+                        wantedCores = 4;
+                        break;
+                }
+                // Keep at least half of the phone's memory for Android.
+                int ram = Math.min(wantedRam, Math.max(256, (totalMb / 2) / 256 * 256));
+                current.memory = ram;
+                current.cores = VMCreatorSelector.getCpuCorePosition(Math.min(wantedCores, Math.max(1, hostCores / 2)));
+                current.threads = 0;
+                current.graphicCard = 1;
+                current.accel = DeviceUtils.is64bit() ? 2 : 1;  // multi-threaded TCG
+                current.isUseLocalTime = true;
+                current.isUseUefi = false;
+                android.widget.Toast.makeText(this, getString(R.string.pro_windows_preset_done, versions[which]) + " (" + ram + " MB RAM)", android.widget.Toast.LENGTH_LONG).show();
+            })
+            .show();
     }
 
     private void setDefault() {

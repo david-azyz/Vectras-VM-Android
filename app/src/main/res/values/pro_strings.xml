@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="pro_title">Vectras PRO</string>
+    <string name="pro_summary">COM ports (USB serial) and performance</string>
+    <string name="pro_com_category">COM port (USB serial adapter)</string>
+    <string name="pro_com_enabled">Connect COM1 to the USB adapter</string>
+    <string name="pro_com_enabled_summary">The virtual machine gets a COM1 port linked to the USB serial cable. Applies on the next VM start.</string>
+    <string name="pro_com_baud">Speed (baud rate)</string>
+    <string name="pro_com_data_bits">Data bits</string>
+    <string name="pro_com_parity">Parity</string>
+    <string name="pro_com_stop_bits">Stop bits</string>
+    <string name="pro_com_status">Status</string>
+    <string name="pro_performance_category">Performance</string>
+    <string name="pro_fast_disk">Fast disk</string>
+    <string name="pro_fast_disk_summary">Much faster disk writes (Windows installs and runs faster). If the app is closed suddenly while the VM is running, the virtual disk may get damaged.</string>
+    <string name="pro_windows_preset">Optimize for Windows</string>
+    <string name="pro_windows_preset_title">Which Windows will you install?</string>
+    <string name="pro_windows_preset_x86_only">Choose the x86_64 architecture first.</string>
+    <string name="pro_windows_preset_done">Settings optimized for %1$s</string>
+    <string-array name="pro_windows_versions">
+        <item>Windows XP</item>
+        <item>Windows 7</item>
+        <item>Windows 10 / 11</item>
+    </string-array>
+    <string-array name="pro_baud_rates">
+        <item>1200</item><item>2400</item><item>4800</item><item>9600</item><item>14400</item>
+        <item>19200</item><item>38400</item><item>57600</item><item>115200</item><item>230400</item>
+    </string-array>
+    <string-array name="pro_data_bits">
+        <item>5</item><item>6</item><item>7</item><item>8</item>
+    </string-array>
+    <string-array name="pro_parity_names">
+        <item>None</item><item>Odd</item><item>Even</item><item>Mark</item><item>Space</item>
+    </string-array>
+    <string-array name="pro_parity_values" translatable="false">
+        <item>none</item><item>odd</item><item>even</item><item>mark</item><item>space</item>
+    </string-array>
+    <string-array name="pro_stop_bits">
+        <item>1</item><item>1.5</item><item>2</item>
+    </string-array>
+</resources>

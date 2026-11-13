@@ -190,6 +190,9 @@ public class StartVM {
         }
 
         extraParams = machineParams + inputDevicesParams + cpuParams + memoryParams + bootParams + graphicsParams + networkParams + soundParams + accelParams + " " + extraParams;
+        if (com.vectras.vm.serial.ComSettings.isEnabled(activity) && !extraParams.contains("-serial")) {
+            extraParams += com.vectras.vm.serial.ComSettings.qemuParams();
+        }
         return env(activity, extraParams, vmData.itemPath, false);
     }
 
@@ -229,13 +232,17 @@ public class StartVM {
             String hdd1;
 
             if (!img.isEmpty()) {
-                if (ifType.isEmpty()) {
+                boolean fastDisk = com.vectras.vm.serial.ComSettings.isFastDisk(activity);
+                if (ifType.isEmpty() && fastDisk && !MainSettingsManager.getArch(activity).equals("ARM64") && !MainSettingsManager.getArch(activity).equals("PPC")) {
+                    hdd0 = "-drive media=disk,if=ide,cache=unsafe,file='" + img + "'";
+                } else if (ifType.isEmpty()) {
                     hdd0 = "-hda";
                     hdd0 += " '" + img + "'";
                 } else {
                     hdd0 = "-drive";
                     hdd0 += " media=disk";
                     hdd0 += ",if=" + ifType;
+                    if (fastDisk) hdd0 += ",cache=unsafe";
                     hdd0 += ",file='" + img + "'";
 
                     if ((MainSettingsManager.getArch(activity).equals("ARM64") && ifType.equals("ide")) || MainSettingsManager.getArch(activity).equals("PPC")) {

@@ -12,7 +12,7 @@ android {
         minSdk minApi
         targetSdk targetApi
         versionCode 157
-        versionName "4.5.0"
+        versionName "4.5.0-PRO-" + (System.getenv("GITHUB_RUN_NUMBER") ?: "dev")
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
 

@@ -18,6 +18,12 @@
         app:iconSpaceReserved="false" />
 
     <Preference
+        android:key="vectraspro"
+        android:fragment="com.vectras.vm.serial.ProPreferencesFragment"
+        android:title="@string/pro_title"
+        android:summary="@string/pro_summary"
+        app:iconSpaceReserved="false" />
+    <Preference
         android:key="qemu"
         android:fragment="com.vectras.qemu.MainSettingsManager$QemuPreferencesFragment"
         android:title="@string/qemu"
