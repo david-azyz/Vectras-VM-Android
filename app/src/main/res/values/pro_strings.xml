@@ -20,6 +20,7 @@
     <string-array name="pro_windows_versions">
         <item>Windows XP</item>
         <item>Windows 7</item>
+        <item>Windows 8 / 8.1</item>
         <item>Windows 10 / 11</item>
     </string-array>
     <string-array name="pro_baud_rates">

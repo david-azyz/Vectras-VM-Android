@@ -579,6 +579,14 @@ public class VMCreatorActivity extends AppCompatActivity {
                         wantedRam = 1536;
                         wantedCores = 2;
                         break;
+                    case 2: // Windows 8 / 8.1: needs NX, SSE2 and (8.1 64-bit) CMPXCHG16B
+                        current.machine = 1;      // i440FX
+                        current.cpu = 4;          // max
+                        current.networkCard = 3;  // Intel E1000
+                        current.soundCard = 2;    // Intel HD Audio
+                        wantedRam = 2048;
+                        wantedCores = 2;
+                        break;
                     default: // Windows 10 / 11: needs a modern CPU model
                         current.machine = 2;      // Q35
                         current.cpu = 4;          // max
