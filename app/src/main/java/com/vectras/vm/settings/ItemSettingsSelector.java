@@ -63,6 +63,7 @@ public class ItemSettingsSelector {
         ArrayList<HashMap<String, Object>> list = new ArrayList<>();
         UniversalPickerDialog.putToList(list, context.getString(R.string.system), "");
         UniversalPickerDialog.putToList(list, "English", "en");
+        UniversalPickerDialog.putToList(list, "Português", "pt");
         UniversalPickerDialog.putToList(list, "中文", "zh");
         UniversalPickerDialog.putToList(list, "русский", "ru");
         UniversalPickerDialog.putToList(list, "Tiếng Việt", "vi");
