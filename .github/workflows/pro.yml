@@ -38,8 +38,9 @@ jobs:
         run: |
           mkdir -p out
           ls -la app/build/outputs/apk/debug/
-          cp app/build/outputs/apk/debug/*arm64-v8a*.apk out/Vectras-PRO.apk
-          cp app/build/outputs/apk/debug/*universal*.apk out/Vectras-PRO-universal.apk || true
+          APK=$(ls app/build/outputs/apk/debug/*arm64-v8a*.apk 2>/dev/null | head -n1)
+          [ -n "$APK" ] || APK=$(ls app/build/outputs/apk/debug/*.apk | head -n1)
+          cp "$APK" out/Vectras-PRO.apk
           cd out && sha256sum *.apk | tee SHA256SUMS.txt
 
       - name: Upload APK
