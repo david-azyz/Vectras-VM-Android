@@ -63,6 +63,14 @@ public class StartVM {
             String machine = Objects.requireNonNull(VMCreatorSelector.getMachine(activity, MainSettingsManager.getArch(activity), vmData.machine).get("value")).toString();
             if (!machine.isEmpty()) {
                 machineParams = "-M " + machine;
+                // Vectras PRO turbo: the emulated HPET timer is very slow without KVM and
+                // Windows uses it constantly; without it Windows falls back to cheaper timers.
+                if (com.vectras.vm.serial.ComSettings.isTurbo(activity) &&
+                        (machine.equals("pc") || machine.equals("q35")) &&
+                        (MainSettingsManager.getArch(activity).equals(MainSettingsManager.X86_64_ARCH) ||
+                                MainSettingsManager.getArch(activity).equals(MainSettingsManager.I386_ARCH))) {
+                    machineParams += ",hpet=off";
+                }
             }
 
             if (

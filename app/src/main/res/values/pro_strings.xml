@@ -38,4 +38,8 @@
     <string-array name="pro_stop_bits">
         <item>1</item><item>1.5</item><item>2</item>
     </string-array>
+    <string name="pro_turbo">Windows turbo</string>
+    <string name="pro_turbo_summary">Turns off the emulated HPET timer on PC machines. Windows uses it all the time and it is very slow without hardware virtualization.</string>
+    <string name="pro_keep_performance">Keep full speed while the VM is on screen</string>
+    <string name="pro_keep_performance_summary">Keeps the screen on and asks Android for steady performance, so the VM does not slow down after a few minutes.</string>
 </resources>

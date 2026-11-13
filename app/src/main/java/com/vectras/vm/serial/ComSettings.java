@@ -15,6 +15,7 @@ public class ComSettings {
     public static final String KEY_PARITY = "proComParity";
     public static final String KEY_STOP_BITS = "proComStopBits";
     public static final String KEY_FAST_DISK = "proFastDisk";
+    public static final String KEY_TURBO = "proTurbo";
     public static final int TCP_PORT = 45550;
 
     private static SharedPreferences prefs(Context context) {
@@ -27,6 +28,10 @@ public class ComSettings {
 
     public static boolean isFastDisk(Context context) {
         return prefs(context).getBoolean(KEY_FAST_DISK, false);
+    }
+
+    public static boolean isTurbo(Context context) {
+        return prefs(context).getBoolean(KEY_TURBO, true);
     }
 
     public static int getBaudRate(Context context) {
@@ -53,6 +58,16 @@ public class ComSettings {
             case "2": return UsbSerialPort.STOPBITS_2;
         }
         return UsbSerialPort.STOPBITS_1;
+    }
+
+    /** Called by the VM display screens: screen on and steady performance while the VM is visible. */
+    public static void applyDisplayPerformance(android.app.Activity activity) {
+        if (!prefs(activity).getBoolean("proKeepPerformance", true)) return;
+        activity.getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            android.os.PowerManager pm = (android.os.PowerManager)activity.getSystemService(Context.POWER_SERVICE);
+            if (pm != null && pm.isSustainedPerformanceModeSupported()) activity.getWindow().setSustainedPerformanceMode(true);
+        }
     }
 
     /** QEMU arguments that give the guest a COM1 connected to the bridge. */

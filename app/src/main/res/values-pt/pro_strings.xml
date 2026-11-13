@@ -19,4 +19,8 @@
     <string-array name="pro_parity_names">
         <item>Nenhuma</item><item>Ímpar</item><item>Par</item><item>Marca</item><item>Espaço</item>
     </string-array>
+    <string name="pro_turbo">Turbo para Windows</string>
+    <string name="pro_turbo_summary">Desliga o relógio HPET emulado nas máquinas PC. O Windows usa esse relógio o tempo todo, e sem virtualização por hardware ele é muito lento.</string>
+    <string name="pro_keep_performance">Manter velocidade com a VM na tela</string>
+    <string name="pro_keep_performance_summary">Mantém a tela ligada e pede ao Android desempenho estável, para a VM não ficar lenta depois de alguns minutos.</string>
 </resources>

@@ -405,6 +405,7 @@ public class MainVNCActivity extends VncCanvasActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        com.vectras.vm.serial.ComSettings.applyDisplayPerformance(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N && MainSettingsManager.getAutoSwitchToExternalMouse(this)) {
             inputManager = (InputManager) getSystemService(Context.INPUT_SERVICE);
             inputManager.registerInputDeviceListener(inputDeviceListener, null);

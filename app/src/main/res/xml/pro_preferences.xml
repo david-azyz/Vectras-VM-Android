@@ -49,6 +49,18 @@
 
     <PreferenceCategory android:title="@string/pro_performance_category" app:iconSpaceReserved="false">
         <SwitchPreferenceCompat
+            android:key="proTurbo"
+            android:defaultValue="true"
+            android:title="@string/pro_turbo"
+            android:summary="@string/pro_turbo_summary"
+            app:iconSpaceReserved="false" />
+        <SwitchPreferenceCompat
+            android:key="proKeepPerformance"
+            android:defaultValue="true"
+            android:title="@string/pro_keep_performance"
+            android:summary="@string/pro_keep_performance_summary"
+            app:iconSpaceReserved="false" />
+        <SwitchPreferenceCompat
             android:key="proFastDisk"
             android:defaultValue="false"
             android:title="@string/pro_fast_disk"

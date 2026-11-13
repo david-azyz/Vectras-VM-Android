@@ -643,6 +643,7 @@ public class X11Activity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
+        com.vectras.vm.serial.ComSettings.applyDisplayPerformance(this);
 
         mNotification = buildNotification();
         mNotificationManager.notify(mNotificationId, mNotification);
